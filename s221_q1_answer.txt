@@ -1,0 +1,9 @@
+Section 2.2.1 Question 1 – Two hidden layers (16 neurons), decision boundary and test accuracy
+
+Test accuracy: 1.00 (100% on the test set)
+
+The network with two hidden layers of 16 ReLU neurons each successfully learns to separate the
+three-class spiral dataset that is not linearly separable. The decision boundary is piecewise
+linear (due to ReLU activations), creating curved, non-linear regions that closely follow the
+spiral structure of the data. The network achieves perfect test accuracy, showing that the
+capacity of 16 neurons per layer is sufficient for this 2D problem.

@@ -1,0 +1,20 @@
+Section 2.2.2 Question 8 – MNIST with no hidden layers (linear classifier, SGD)
+
+Test accuracy: 0.9231 (92.31%)
+
+The linear network (single FC layer, no hidden layers) achieves ~92.3% accuracy. This is
+significantly lower than the two-hidden-layer network (97.3%) but still well above chance
+(10% for 10 classes).
+
+What this tells us about the data:
+  MNIST digit images (784 pixel features) are approximately linearly separable to a large
+  degree. The digit classes occupy mostly distinct regions of pixel space, so a linear
+  classifier — essentially multinomial logistic regression — can already distinguish most
+  digits. However, the remaining ~7.7% error comes from cases where the raw pixel values
+  of different digits overlap linearly, requiring non-linear feature transformations (hidden
+  layers) to resolve.
+
+  In contrast to the 2D spiral data (Q2), where linear classification was near-chance,
+  MNIST raw pixels are high-dimensional enough that a linear hyperplane can capture much
+  of the class structure. The hidden layers add additional accuracy by learning non-linear
+  combinations of pixels (e.g., edges, curves) that better separate ambiguous digit pairs.

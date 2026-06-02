@@ -1,0 +1,23 @@
+Section 2.2.2 Question 9 – Most vs least confident predictions for digit 7
+
+Setup: filter test set to true digit 7, compute confidence = max(softmax(logits)) for each image.
+Plot 64 most and 64 least confident images.
+
+Expected differences:
+  Most confident images of 7:
+    These tend to be clean, clearly written 7s — standard strokes, proper proportions, minimal
+    ambiguity. The digit looks unambiguously like a 7: a horizontal bar at the top and a
+    diagonal stroke going down-right. The network's probability distribution strongly peaks at
+    class 7.
+
+  Least confident images of 7:
+    These are typically unusual or ambiguous handwriting styles:
+    - 7s that look similar to 1 (very thin vertical stroke, no horizontal bar)
+    - 7s that look similar to 9 (looped or curved top)
+    - Oddly rotated, slanted, or incomplete digits
+    - Very thick or very thin strokes that distort the typical shape
+    The network assigns a more spread-out probability distribution across multiple classes.
+
+  The difference between the two groups reveals what the network has learned: it is confident
+  about prototypical digit shapes and uncertain about edge cases. This aligns with human
+  perception — the least confident images are also harder for humans to identify.

@@ -1,0 +1,9 @@
+Section 2.2.2 Question 5 – MNIST classification with SGD (64 neurons, 2 hidden layers)
+
+Test accuracy: 0.9727 (97.27%)
+
+The two-hidden-layer network with 64 neurons per layer and ReLU activations, trained with
+SGD (batch size 256, lr=0.1, 10,000 iterations), achieves ~97.3% accuracy on the MNIST
+test set. This is a strong result for a simple fully-connected network with no convolutions
+or special regularization, demonstrating that feedforward networks with sufficient capacity
+can learn meaningful features from raw pixel values.

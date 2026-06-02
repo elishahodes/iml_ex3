@@ -1,0 +1,19 @@
+Section 2.2.2 Question 6 – MNIST convergence process (SGD)
+
+Loss vs iteration:
+  The loss drops rapidly in the first few hundred iterations (SGD makes fast initial progress
+  because each batch provides a noisy but useful gradient estimate), then levels off and
+  decreases more slowly. Unlike GD, the curve is noisy/jagged due to the stochastic nature
+  of batch sampling — each iteration uses a different random mini-batch, so the loss estimate
+  fluctuates around the true loss.
+
+Gradient norm vs iteration:
+  The gradient norm is large at the start and generally trends downward as the network
+  approaches a good solution. Due to the mini-batch noise, the norm does not smoothly
+  decrease — it fluctuates throughout training. This is expected: SGD never converges in
+  the classical GD sense; it converges in expectation and then wanders in a neighborhood
+  of the optimum.
+
+The noisy convergence is the key characteristic of SGD that distinguishes it from GD.
+Despite the noise, SGD reaches a good solution much faster (in wall-clock time) than GD
+on large datasets, because it processes small batches rather than the full dataset each step.

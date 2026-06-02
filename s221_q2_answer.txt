@@ -1,0 +1,15 @@
+Section 2.2.1 Question 2 – No hidden layers, decision boundary and test accuracy
+
+Test accuracy: ~0.54 (roughly chance for 3 classes is 1/3 ≈ 0.33, so some structure is learned)
+
+Without any hidden layers, the network reduces to a linear (multinomial logistic) classifier.
+Its decision boundary consists of straight lines — hyperplanes in the input space — since there
+is no non-linearity to bend them. The spiral data is inherently non-linearly separable: no set
+of linear boundaries can correctly classify all three interleaved spirals.
+
+As a result, the accuracy is dramatically lower than in Q1. The network can only find the best
+linear partition of the space, which captures some but not most of the class structure.
+
+This illustrates the fundamental role of hidden layers with non-linear activations: they allow
+the network to learn curved, flexible decision boundaries that can accommodate complex data
+geometry. Without them, the model is equivalent to multinomial logistic regression.

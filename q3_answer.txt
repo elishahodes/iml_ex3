@@ -1,0 +1,25 @@
+Question 3 – Convergence rate (||w|| vs iteration) for all learning rates
+
+L2 module:
+- eta=1: the norm stays exactly constant. The L2 gradient is 2w, so the update is
+  w_new = w - 1 * 2w = -w. Each iteration flips the sign of w without changing its magnitude,
+  so the weights oscillate between +w0 and -w0 forever. The contraction factor |1 - 2*eta|
+  equals exactly 1, giving neither convergence nor divergence — just perpetual oscillation.
+- eta=0.1 and eta=0.01: both converge to 0. eta=0.1 converges faster (fewer iterations needed)
+  because it takes larger, yet still stable, steps. Each iteration contracts the norm by the
+  factor |1 - 2*eta|: for eta=0.1 the factor is 0.8, for eta=0.01 it is 0.98 — so eta=0.1 is
+  geometrically faster.
+- eta=0.001: converges slowly (contraction factor 0.998), reaching a relatively large residual
+  after 1000 iterations.
+
+L1 module:
+- eta=0.001: decreases very slowly; 1000 steps of size 0.001 move each coordinate by at most 1
+  unit, leaving ||w|| still large.
+- eta=0.01: steadily decreases, reaching a small value near zero.
+- eta=0.1: decreases quickly but then oscillates around a small residual.
+- eta=1: oscillates with large amplitude — each step of size 1 overshoots zero repeatedly,
+  preventing convergence.
+
+General principle: a learning rate that is too large causes oscillation or divergence; one that
+is too small converges but very slowly. There is an optimal range that balances speed and stability.
+the lower the learning rate, the closer we oscillate around the minimum.

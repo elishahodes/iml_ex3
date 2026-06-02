@@ -9,89 +9,33 @@ class L2(BaseModule):
     Represents the function: f(w)=||w||^2_2
     """
     def __init__(self, weights: np.ndarray = None):
-        """
-        Initialize a module instance
-
-        Parameters:
-        ----------
-        weights: np.ndarray, default=None
-            Initial value of weights
-        """
         super().__init__(weights)
 
     def compute_output(self, **kwargs) -> np.ndarray:
-        """
-        Compute the output value of the L2 function at point self._weights
-
-        Parameters
-        ----------
-        kwargs:
-            No additional arguments are expected
-
-        Returns
-        -------
-        output: ndarray of shape (1,)
-            Value of function at point self._weights
-        """
-        raise NotImplementedError()
+        return np.array([np.sum(self._weights ** 2)])
 
     def compute_jacobian(self, **kwargs) -> np.ndarray:
-        """
-        Compute L2 derivative with respect to self._weights at point self._weights
+        return 2 * self._weights
 
-        Parameters
-        ----------
-        kwargs:
-            No additional arguments are expected
+    def backprop(self, upstream_grad: np.ndarray) -> np.ndarray:
+        pass
 
-        Returns
-        -------
-        output: ndarray of shape (n_in,)
-            L2 derivative with respect to self._weights at point self._weights
-        """
-        raise NotImplementedError()
+    def clear_cache(self) -> None:
+        pass
 
 
 class L1(BaseModule):
     def __init__(self, weights: np.ndarray = None):
-        """
-        Initialize a module instance
-
-        Parameters:
-        ----------
-        weights: np.ndarray, default=None
-            Initial value of weights
-        """
         super().__init__(weights)
 
     def compute_output(self, **kwargs) -> np.ndarray:
-        """
-        Compute the output value of the L1 function at point self._weights
-
-        Parameters
-        ----------
-        kwargs:
-            No additional arguments are expected
-
-        Returns
-        -------
-        output: ndarray of shape (1,)
-            Value of function at point self._weights
-        """
-        raise NotImplementedError()
+        return np.array([np.sum(np.abs(self._weights))])
 
     def compute_jacobian(self, **kwargs) -> np.ndarray:
-        """
-        Compute L1 derivative with respect to self._weights at point self._weights
+        return np.sign(self._weights)
 
-        Parameters
-        ----------
-        kwargs:
-            No additional arguments are expected
+    def backprop(self, upstream_grad: np.ndarray) -> np.ndarray:
+        pass
 
-        Returns
-        -------
-        output: ndarray of shape (n_in,)
-            L1 derivative with respect to self._weights at point self._weights
-        """
-        raise NotImplementedError()
+    def clear_cache(self) -> None:
+        pass

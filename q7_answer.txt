@@ -1,0 +1,21 @@
+Question 7 – Descent path for gamma=0.95 vs fixed learning rate
+
+With gamma=0.95 (exponential decay, eta=0.1):
+  The path starts similarly to the fixed-LR case: large diagonal steps toward the origin in the
+  positive quadrant. However, as the iterations progress, the step size shrinks geometrically.
+  This has two visible effects:
+  1. The steps become progressively smaller — the path "zooms in" toward the minimum rather
+     than oscillating with constant amplitude.
+  2. Instead of chattering back and forth near zero, the iterates form a smoothly converging
+     spiral/tail that terminates at (0, 0), because the shrinking step size can no longer
+     overshoot.
+
+Compared to fixed LR (eta=0.01, which was the most stable fixed rate):
+  - Fixed LR: path reaches the vicinity of zero but then oscillates with constant amplitude ~eta,
+    never exactly landing on 0.
+  - Decaying LR: path converges and actually reaches zero, with the tail of the path tightening
+    like a contracting spiral into the origin.
+
+In summary, the descent path with exponential decay looks similar initially (same objective,
+same gradient direction), but the final approach to the minimum is qualitatively different:
+the shrinking step size allows the algorithm to "pin down" the exact minimum at w=0.

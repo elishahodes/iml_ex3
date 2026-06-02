@@ -1,0 +1,15 @@
+Question 2 – Two phenomena in L1 descent path under GD with fixed learning rate
+
+1. Piecewise linear (staircase) trajectory:
+   Because the L1 gradient is sign(w) — constant ±1 per component — each GD update moves w
+   by exactly eta in each coordinate direction. The path forms straight diagonal segments while
+   both components are on the same side of zero, then switches to axis-aligned segments once
+   one component reaches (or crosses) zero. The resulting path is a "staircase" rather than a
+   smooth curve.
+
+2. Chattering / oscillation around the minimum:
+   Once a coordinate is close to zero, the constant-step update can cause it to overshoot and
+   flip sign repeatedly. Since sign(w_i) flips when w_i crosses zero, the gradient direction
+   alternates each iteration, trapping the iterates in a back-and-forth oscillation of amplitude
+   ~eta around zero. This prevents the algorithm from exactly reaching the minimum at w=0 for
+   any positive fixed learning rate.

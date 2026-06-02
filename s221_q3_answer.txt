@@ -1,0 +1,20 @@
+Section 2.2.1 Question 3 – Convergence process (16 neurons, 2 hidden layers)
+
+Loss vs iteration:
+  The loss decreases steadily from its initial value and converges to near zero, following a
+  roughly exponential decay curve. There are no sharp oscillations, indicating that eta=0.1
+  is a stable learning rate for this problem size.
+
+Gradient norm vs iteration:
+  The gradient norm is large initially (the network is far from the optimum), decreases
+  monotonically, and approaches zero as training converges. The shape mirrors the loss curve.
+
+Animation:
+  The decision boundary animation shows that early on (first few hundred iterations) the
+  boundaries are near-linear and roughly symmetric, reflecting random initial weights.
+  As training progresses, the boundaries bend and wrap around the spiral arms, becoming
+  more curved and precise. By the end of training, the boundaries tightly follow the three
+  spirals, separating them cleanly.
+
+This illustrates how gradient descent progressively refines the network's representation:
+early iterations learn coarse structure, later iterations fine-tune boundary placement.

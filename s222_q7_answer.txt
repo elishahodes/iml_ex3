@@ -1,0 +1,19 @@
+Section 2.2.2 Question 7 – Confusion matrix analysis
+
+Two most common confusions (true → predicted):
+  1. 7 → 9: digit 7 predicted as 9. These two digits share a similar angular stroke at the top;
+     some handwritten 7s can resemble 9s especially when the top is closed.
+  2. 9 → 4: digit 9 predicted as 4. Both digits have a closed loop at the top and a descending
+     stroke; certain handwriting styles make them hard to distinguish.
+
+Three least common confusions (true → predicted):
+  These are pairs (true, predicted) that essentially never co-occur. For example (0, 1), (0, 2),
+  (0, 9) — zero is rarely mistaken for one, two, or nine. This makes sense: the digit 0 is a
+  closed oval and is visually very distinct from digits 1 and 2. The network almost never
+  confuses these visually dissimilar classes.
+
+Do these results make sense?
+  Yes. The most common confusions involve pairs of digits that share visual features
+  (similar strokes, angles, loops), which even humans sometimes confuse in handwriting.
+  The least common confusions are between visually very different digits where even
+  noisy or unusual handwriting is unlikely to create ambiguity.

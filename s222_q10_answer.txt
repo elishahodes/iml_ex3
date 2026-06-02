@@ -1,0 +1,35 @@
+Section 2.2.2 Question 10 – GD vs SGD runtime comparison (2500 samples)
+
+Setup: both solvers use lr=0.1, max_iter=10,000, tol=1e-10, 64-neuron hidden layers.
+GD uses full 2500-sample batch each iteration. SGD uses 64-sample mini-batches.
+
+Observations from runtime vs loss plots:
+
+GD:
+  - Each GD iteration processes all 2500 samples → one iteration is expensive (~many ms).
+  - 10,000 iterations take much longer total wall-clock time.
+  - The loss decreases smoothly (no noise) because the gradient is computed exactly over the
+    full dataset.
+  - The curve is a smooth, monotonically decreasing function of time.
+
+SGD:
+  - Each SGD iteration processes only 64 samples → one iteration is very fast (~fraction of ms).
+  - SGD can complete many more iterations in the same wall-clock time.
+  - The loss decreases quickly in wall-clock time (many cheap iterations), but the curve is
+    noisy because mini-batch gradients are stochastic estimates of the true gradient.
+  - Early in training, SGD reaches a similar loss level to GD in far less time.
+
+Similarities:
+  - Both start from the same random initialization and minimize the same objective.
+  - Both ultimately reduce the loss significantly.
+  - The general shape of the loss curve (fast initial drop, slower later) is similar.
+
+Differences:
+  - GD's loss-vs-time curve is smooth; SGD's is jagged.
+  - GD takes much longer per "progress unit" because each step is expensive.
+  - SGD achieves faster practical convergence (better loss per unit time) on large datasets.
+  - GD computes the exact gradient; SGD estimates it, so GD makes more principled updates
+    per iteration but fewer per unit time.
+
+Conclusion: for datasets where n is moderate, SGD's advantage in wall-clock time dominates,
+making it the preferred optimizer in practice.

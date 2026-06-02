@@ -1,0 +1,25 @@
+Question 5 – Convergence rate for different exponential decay rates (gamma)
+
+All runs use L1, eta=0.1, starting from w_0=(sqrt(2), e/3).
+
+gamma=1.0 (no decay, equivalent to fixed LR eta=0.1):
+  The norm decreases quickly at first but then oscillates around a small positive value (~0.09).
+  Without decay, the learning rate never shrinks, so chattering near zero persists.
+
+gamma=0.99:
+  The norm decreases smoothly and reaches 0. The learning rate decays slowly enough that the
+  algorithm takes many effective steps before becoming tiny, converging to the exact minimum.
+
+gamma=0.95:
+  Similar to 0.99 but decay is faster. The norm still reaches 0 because the learning rate
+  decays to near zero within 1000 iterations, allowing the oscillations to die out. Convergence
+  happens somewhat earlier than gamma=0.99.
+
+gamma=0.9:
+  Decays very aggressively (after ~100 iterations, eta_t < 1e-4). The algorithm makes fast
+  initial progress but "freezes" early, leaving the norm at a non-zero value (~0.41) because
+  the learning rate becomes negligible before the minimum is reached.
+
+Key insight: exponential decay with moderate gamma (0.95–0.99) is enough to guarantee
+convergence to zero for the L1 objective: the learning rate decays to zero, so oscillations
+dampen. Too fast a decay (gamma=0.9) stalls the algorithm before convergence.

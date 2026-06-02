@@ -1,0 +1,22 @@
+Question 6 – Exponential decay vs fixed LR for L1; lowest L1 norm achieved
+
+Lowest L1 norm achieved with exponential decay:
+  gamma=0.95 and gamma=0.99 both achieve L1 loss ≈ 0 (convergence to the true minimum w=0).
+
+Comparison with fixed learning rate:
+  With a fixed learning rate, the algorithm cannot converge to exactly w=0 for the L1 objective.
+  The best fixed LR (eta=0.01) achieved loss ~0.008. The fundamental issue is that the L1
+  gradient is always ±1 in each direction, so any positive fixed step causes oscillation around
+  zero.
+
+  With exponential decay, eta_t = eta * gamma^t → 0 as t → ∞. This means:
+  - Initially, large steps enable fast progress toward the minimum.
+  - Later, steps become small enough to resolve the fine structure near zero and "land" on it.
+  - The decreasing step size suppresses the oscillation that plagues the fixed-rate algorithm.
+
+Why the difference:
+  A necessary condition for convergence of subgradient methods on non-smooth objectives is that
+  the step sizes satisfy sum(eta_t) = ∞ (to reach the minimum) and sum(eta_t^2) < ∞ (to ensure
+  convergence rather than oscillation). Exponential decay satisfies the second condition (the
+  geometric series is summable), allowing convergence to the true minimum. A fixed learning rate
+  satisfies neither (sum diverges, but sum of squares also diverges), causing oscillation.

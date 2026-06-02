@@ -1,0 +1,25 @@
+Section 2.2.1 Question 4 – Convergence process (6 neurons, 2 hidden layers)
+
+Compared to the 16-neuron case:
+
+Loss vs iteration:
+  The loss still decreases and converges, but the final loss value may be higher (the model
+  with 6 neurons has less capacity). The convergence curve may be less smooth, with small
+  fluctuations, because fewer neurons means each one carries more gradient signal and the
+  loss landscape is less well-conditioned.
+
+Gradient norm vs iteration:
+  Similar overall shape to the 16-neuron case, but may not reach as small a final gradient
+  norm, since the reduced capacity means the model cannot fully minimize the loss.
+
+Animation:
+  The decision boundary animation shows simpler, coarser boundaries compared to 16 neurons.
+  The boundaries are piecewise linear but with fewer pieces (fewer neurons = fewer linear
+  segments per boundary). The final boundary still separates the classes reasonably well but
+  is less tightly fitted to the spiral structure.
+
+Explanation:
+  With only 6 neurons per hidden layer, the network has limited expressive power. It can
+  represent fewer piecewise-linear regions in the input space, so the decision boundary is
+  cruder. The model may underfit slightly compared to the 16-neuron version. This illustrates
+  the trade-off between network width and model expressiveness.

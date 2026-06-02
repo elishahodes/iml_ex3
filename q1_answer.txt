@@ -1,0 +1,17 @@
+Question 1 – Descent path at eta=0.01: L1 vs L2
+
+L2 (squared L2 norm, f(w)=||w||^2):
+The gradient is 2w, which is proportional to the distance from the origin. As the algorithm
+approaches the origin, the gradient magnitude shrinks, producing a smooth, curved path that
+gradually decelerates. The path spirals inward and converges to the minimum (w=0) smoothly.
+
+L1 (L1 norm, f(w)=||w||_1):
+The gradient is sign(w), which has constant magnitude (1 in each dimension) regardless of
+how close w is to the origin. This means the step size in each direction is always the same
+(eta). The path is therefore a piecewise linear "staircase" — diagonal while both components
+are nonzero, then axis-aligned once a component crosses zero. Near zero, the algorithm may
+overshoot and oscillate rather than converging precisely, since the gradient does not shrink.
+
+Key difference: L2 has a self-dampening gradient (pulls harder when far, softer when close),
+enabling smooth convergence. L1's constant-magnitude gradient can cause overshooting near zero
+and prevents exact convergence for any fixed learning rate larger than zero.

@@ -1,0 +1,22 @@
+Question 4 – Lowest loss achieved per module and explanation
+
+L2 module:
+  Best eta=0.1 and eta=0.01 both achieve loss ≈ 0 (essentially machine-precision zero).
+  Because f(w) = ||w||^2 is smooth and strongly convex with a unique minimum at w=0, GD with
+  an appropriate learning rate converges geometrically to the exact minimum. The gradient
+  vanishes as w→0, so the updates become arbitrarily small and the algorithm can reach w=0
+  to numerical precision.
+
+L1 module:
+  Best achievable (in 1000 iterations) was eta=0.01 with loss ≈ 0.008.
+  Unlike L2, the L1 norm is non-smooth: its gradient is sign(w), which has constant magnitude
+  regardless of proximity to the minimum. This means:
+  (a) The step size never self-dampens near the origin.
+  (b) For any fixed eta > 0, the algorithm oscillates with amplitude ~eta around zero once it
+      arrives nearby, preventing exact convergence to 0.
+  Therefore, the lowest achievable loss with a fixed learning rate is O(eta), not zero.
+  To reach loss = 0, the learning rate must decay to zero (e.g., using exponential decay).
+
+Summary: L2 achieves loss = 0 because it is smooth, self-dampening; L1 can only approach 0
+with a fixed LR, since its constant-magnitude gradient causes persistent oscillation near the
+minimum.
